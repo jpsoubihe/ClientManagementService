@@ -13,6 +13,7 @@ public class ServiceConverter {
                 .password(account.getPassword())
                 .email(account.getEmail())
                 .contract(account.getContract())
+                .country(account.getCountry())
                 .beginDate(account.getBeginDate())
                 .build();
 
@@ -26,6 +27,7 @@ public class ServiceConverter {
                 .email(dto.getEmail())
                 .password(dto.getPassword())
                 .username(dto.getUsername())
+                .country(dto.getCountry())
                 .users(dto.getUsers())
                 .build();
 

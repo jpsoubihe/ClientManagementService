@@ -1,5 +1,6 @@
 package entities;
 
+import enums.Country;
 import enums.ServiceType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -34,10 +35,13 @@ public class Account {
     @Column(name = "password")
     String password;
 
+    @Column(name = "country")
+    Country country;
+
     @Column(name = "contract")
     ServiceType contract;
 
-    @ManyToOne
+    @ManyToOne(targetEntity = User.class)
     List<User> users;
 
 

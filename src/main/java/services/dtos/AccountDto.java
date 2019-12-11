@@ -1,6 +1,7 @@
 package services.dtos;
 
 import entities.User;
+import enums.Country;
 import enums.ServiceType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,6 +25,8 @@ public class AccountDto {
     String username;
 
     String password;
+
+    Country country;
 
     ServiceType contract;
 

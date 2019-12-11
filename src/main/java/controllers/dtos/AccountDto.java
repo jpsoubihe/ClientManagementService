@@ -1,7 +1,6 @@
 package controllers.dtos;
 
 import entities.User;
-import enums.ServiceType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,7 +8,8 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
+
+import static java.util.Collections.emptyList;
 
 
 @Data
@@ -20,13 +20,20 @@ public class AccountDto {
 
     LocalDate beginDate;
 
-    String email;
+    @Builder.Default
+    String email = "";
 
-    String username;
+    @Builder.Default
+    String username = "";
 
-    String password;
+    @Builder.Default
+    String password = "";
 
-    ServiceType contract;
+    @Builder.Default
+    String contract = "";
+
+    @Builder.Default
+    String country = "";
 
     List<User> users;
 }

@@ -13,9 +13,6 @@ public class User {
     @Column(name = "name")
     String name;
 
-    @Column(name = "country")
-    Country country;
-
     @Column(name = "age")
     int age;
 

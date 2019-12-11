@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 
 import static java.util.Collections.emptyList;
 import static services.converters.ServiceConverter.fromAccount;
+import static services.converters.ServiceConverter.toAccount;
+import static services.validators.AccountValidator.validateAccount;
 
 @Service
 public class AccountService {
@@ -27,6 +29,13 @@ public class AccountService {
             return accounts.stream().map(a -> fromAccount(a)).collect(Collectors.toList());
 
         return emptyList();
+    }
 
+    public AccountDto postAccount(AccountDto dto){
+        validateAccount(dto);
+
+        Account account = accountRepository.save(toAccount(dto));
+
+        return fromAccount(account);
     }
 }
