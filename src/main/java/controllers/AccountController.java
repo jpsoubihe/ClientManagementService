@@ -25,6 +25,12 @@ public class AccountController {
         return ResponseEntity.ok(serviceAccounts.stream().map(sa -> fromService(sa)).collect(Collectors.toList()));
     }
 
+    @GetMapping("/{username}")
+    public ResponseEntity<AccountDto> getAccount(@PathVariable String username){
+        services.dtos.AccountDto serviceDto = accountService.getAccount(username);
+        return ResponseEntity.ok(fromService(serviceDto));
+    }
+
     @PostMapping()
     public ResponseEntity<AccountDto> createNewAccount(@RequestBody AccountDto accountDto){
         services.dtos.AccountDto dto = toService(accountDto);
@@ -32,4 +38,11 @@ public class AccountController {
         accountDto = fromService(dto);
         return ResponseEntity.ok(accountDto);
     }
+
+    @DeleteMapping("/{username}")
+    public ResponseEntity<AccountDto> deleteAccount(@PathVariable String username){
+        services.dtos.AccountDto dto = accountService.deleteAccount(username);
+        return ResponseEntity.ok(fromService(dto));
+    }
+
 }
