@@ -27,14 +27,24 @@ public class AccountService {
 
         List<Account> accounts = accountRepository.findAll();
 
-        if(!accounts.isEmpty())
-            return accounts.stream().map(a -> fromAccount(a)).collect(Collectors.toList());
+        if(!accounts.isEmpty()){
+            return accounts
+                    .stream()
+                    .map(a -> fromAccount(a))
+                    .collect(Collectors.toList());
+        }
+
 
         return emptyList();
     }
 
     public AccountDto getAccount(String username){
-        Account account = accountRepository.findByUsername(username).orElseThrow(() -> new InvalidAccountException("there's no username"));
+
+        Account account = accountRepository
+                .findByUsername(username)
+                .orElseThrow(() ->
+                        new InvalidAccountException("there's no username"));
+
         return fromAccount(account);
     }
 
@@ -47,9 +57,16 @@ public class AccountService {
     }
 
     public AccountDto deleteAccount(String username){
-        Account account = accountRepository.findByUsername(username).orElseThrow(() -> new InvalidAccountException("there's no username"));
+
+        Account account = accountRepository
+                .findByUsername(username)
+                .orElseThrow(() ->
+                        new InvalidAccountException("there's no username"));
+
         accountRepository.delete(account);
+
         AccountDto dto = fromAccount(account);
+
         return dto;
     }
 
