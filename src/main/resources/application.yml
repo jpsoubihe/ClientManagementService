@@ -1,0 +1,24 @@
+Spring:
+
+  datasource:
+#    url: jdbc:h2:mem:testdb
+#    driverClassName: org.h2.Driver
+    url: jdbc:mariadb://127.0.0.1:3306/clients
+
+    username: root
+    password: mypass
+    driverClassName: org.mariadb.jdbc.Driver
+    testWhileIdle: true
+    valiadtionQuery: SELECT 1
+  jpa:
+#    database-platform: org.hibernate.dialect.H2Dialect
+    show_sql: true
+    hibernate:
+      ddl-auto: create
+      dialect: MySQL8Dialect
+
+  flyway:
+    enabled: true
+    user: root
+    password: mypass
+    schemas: clients
