@@ -19,7 +19,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class Account {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     Long id;
 

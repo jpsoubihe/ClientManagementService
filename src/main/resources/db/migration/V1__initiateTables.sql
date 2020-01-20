@@ -1,0 +1,2 @@
+create table account (id bigint not null auto_increment, begin_date date, contract integer, country integer, email varchar(255), password varchar(255), username varchar(255), users_name varchar(255), primary key (id));
+create table user (name varchar(255) not null, age integer, primary key (name));

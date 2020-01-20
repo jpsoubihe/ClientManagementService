@@ -11,6 +11,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @ComponentScan(basePackages = {"controllers","services","config"})
 @EnableJpaRepositories(basePackages = {"repositories"})
 @EntityScan(basePackages = {"entities"})
+@EnableSwagger2
 public class Application {
     public static void main(String[] args){
         SpringApplication.run(Application.class,args);
