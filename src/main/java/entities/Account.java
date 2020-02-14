@@ -41,7 +41,7 @@ public class Account {
     @Column(name = "contract")
     ServiceType contract;
 
-    @ManyToOne(targetEntity = User.class)
+    @OneToMany(mappedBy = "account")
     List<User> users;
 
 

@@ -2,13 +2,10 @@ package entities;
 
 import enums.Country;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "usu")
+@Table(name = "user")
 public class User {
 
     @Id
@@ -17,6 +14,9 @@ public class User {
 
     @Column(name = "age")
     int age;
+
+    @ManyToOne
+    Account account;
 
 
 }
