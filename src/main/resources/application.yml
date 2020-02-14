@@ -3,7 +3,7 @@ Spring:
   datasource:
 #    url: jdbc:h2:mem:testdb
 #    driverClassName: org.h2.Driver
-    url: jdbc:mariadb://127.0.0.1:3306/clients
+    url: jdbc:mariadb://localhost:3306/clients
 
     username: root
     password: mypass
@@ -21,4 +21,3 @@ Spring:
     enabled: true
     user: root
     password: mypass
-    schemas: clients

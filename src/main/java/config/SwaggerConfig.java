@@ -28,8 +28,8 @@ public class SwaggerConfig {
 
     ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("My API Title")
-                .description("Awesome description")
+                .title("Client Manager API")
+                .description("Service responsible for dealing with client management")
                 .license("Apache 2.0")
                 .version("1.0")
                 .build();
