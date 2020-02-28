@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Collections.emptyList;
@@ -35,5 +36,6 @@ public class AccountDto {
     @Builder.Default
     String country = "";
 
-    List<User> users;
+    @Builder.Default
+    List<User> users = new ArrayList<>();
 }

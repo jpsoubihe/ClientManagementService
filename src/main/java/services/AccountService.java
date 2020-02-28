@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 import repositories.AccountRepository;
 import services.dtos.AccountDto;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static java.util.Collections.emptyList;
@@ -23,11 +21,11 @@ public class AccountService {
     @Autowired
     AccountRepository accountRepository;
 
-    public List<AccountDto> getAllAccounts(){
+    public List<AccountDto> getAllAccounts() {
 
         List<Account> accounts = accountRepository.findAll();
 
-        if(!accounts.isEmpty()){
+        if (!accounts.isEmpty()) {
             return accounts
                     .stream()
                     .map(a -> fromAccount(a))
@@ -38,7 +36,7 @@ public class AccountService {
         return emptyList();
     }
 
-    public AccountDto getAccount(String username){
+    public AccountDto getAccount(String username) {
 
         Account account = accountRepository
                 .findByUsername(username)
@@ -48,7 +46,7 @@ public class AccountService {
         return fromAccount(account);
     }
 
-    public AccountDto postAccount(AccountDto dto){
+    public AccountDto postAccount(AccountDto dto) {
         validateAccount(dto);
 
         Account account = accountRepository.save(toAccount(dto));
@@ -56,7 +54,7 @@ public class AccountService {
         return fromAccount(account);
     }
 
-    public AccountDto deleteAccount(String username){
+    public AccountDto deleteAccount(String username) {
 
         Account account = accountRepository
                 .findByUsername(username)
