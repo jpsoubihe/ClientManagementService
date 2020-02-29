@@ -19,7 +19,8 @@ import static java.util.Collections.emptyList;
 @AllArgsConstructor
 public class AccountDto {
 
-    LocalDate beginDate;
+    @Builder.Default
+    LocalDate beginDate = LocalDate.now();
 
     @Builder.Default
     String email = "";

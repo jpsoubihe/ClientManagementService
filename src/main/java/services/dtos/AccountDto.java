@@ -18,17 +18,21 @@ import java.util.Set;
 @AllArgsConstructor
 public class AccountDto {
 
+
     LocalDate beginDate;
 
-    String email;
+    @Builder.Default
+    String email = "";
 
-    String username;
+    @Builder.Default
+    String username = "";
 
-    String password;
+    @Builder.Default
+    String password = "";
 
-    Country country;
+    String country;
 
-    ServiceType contract;
+    String contract;
 
     List<User> users;
 }

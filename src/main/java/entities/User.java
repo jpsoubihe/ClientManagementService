@@ -1,7 +1,5 @@
 package entities;
 
-import enums.Country;
-
 import javax.persistence.*;
 
 @Entity
@@ -17,6 +15,4 @@ public class User {
 
     @ManyToOne
     Account account;
-
-
 }
