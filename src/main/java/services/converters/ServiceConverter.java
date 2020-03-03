@@ -16,8 +16,8 @@ public class ServiceConverter {
                 .username(account.getUsername())
                 .password(account.getPassword())
                 .email(account.getEmail())
-                .contract(account.getContract().toString())
-                .country(account.getCountry().toString())
+                .contract(account.getContract())
+                .country(account.getCountry())
                 .beginDate(account.getBeginDate())
                 .build();
 
@@ -27,11 +27,11 @@ public class ServiceConverter {
 
         return Account.builder()
                 .beginDate(dto.getBeginDate())
-                .contract(convertToServiceType(dto.getContract()))
+                .contract(dto.getContract())
                 .email(dto.getEmail())
                 .password(dto.getPassword())
                 .username(dto.getUsername())
-                .country(convertToCountry(dto.getCountry()))
+                .country(dto.getCountry())
                 .users(dto.getUsers())
                 .build();
 

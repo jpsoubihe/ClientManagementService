@@ -20,13 +20,13 @@ public class AccountValidator {
             throw new InvalidAccountException("no password to register your account");
         }
 
-        if(dto.getContract().isEmpty()) {
-            throw new InvalidContractException("no contract to register your account");
-        }
-
-        if(dto.getCountry().isEmpty()) {
-            throw new InvalidCountryException("no Country to register your account");
-        }
+//        if(dto.getContract().) {
+//            throw new InvalidContractException("no contract to register your account");
+//        }
+//
+//        if(dto.getCountry().isEmpty()) {
+//            throw new InvalidCountryException("no Country to register your account");
+//        }
 
 
     }

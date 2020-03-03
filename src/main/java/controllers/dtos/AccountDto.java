@@ -1,11 +1,14 @@
 package controllers.dtos;
 
 import entities.User;
+import enums.Country;
+import enums.ServiceType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,12 +34,9 @@ public class AccountDto {
     @Builder.Default
     String password = "";
 
-    @Builder.Default
-    String contract = "";
+    ServiceType contract;
 
-    @Builder.Default
-    String country = "";
-
-    @Builder.Default
+    Country country;
+    
     List<User> users = new ArrayList<>();
 }

@@ -8,6 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -30,9 +31,11 @@ public class AccountDto {
     @Builder.Default
     String password = "";
 
-    String country;
+    @NotNull
+    Country country;
 
-    String contract;
+    @NotNull
+    ServiceType contract;
 
     List<User> users;
 }
