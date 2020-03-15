@@ -1,18 +1,20 @@
 package services;
 
 import entities.Account;
+import entities.User;
 import exceptions.InvalidAccountException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repositories.AccountRepository;
+import repositories.UserRepository;
 import services.dtos.AccountDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static converters.AccountConverter.fromAccount;
+import static converters.AccountConverter.toAccount;
 import static java.util.Collections.emptyList;
-import static services.converters.ServiceConverter.fromAccount;
-import static services.converters.ServiceConverter.toAccount;
 import static services.validators.AccountValidator.validateAccount;
 
 @Service
@@ -20,6 +22,9 @@ public class AccountService {
 
     @Autowired
     AccountRepository accountRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     public List<AccountDto> getAllAccounts() {
 
@@ -61,9 +66,15 @@ public class AccountService {
                 .orElseThrow(() ->
                         new InvalidAccountException("there's no username"));
 
+        AccountDto dto = fromAccount(account);
+
+        if(!account.getUsers().isEmpty()) {
+            deleteUsers(account.getUsers());
+        }
+
         accountRepository.delete(account);
 
-        AccountDto dto = fromAccount(account);
+//        AccountDto dto = fromAccount(account);
 
         return dto;
     }
@@ -72,5 +83,9 @@ public class AccountService {
     //ToDo: update account operation
     public AccountDto updateAccount(AccountDto dto) {
         return null;
+    }
+
+    public void deleteUsers(List<User> users) {
+        users.forEach(user -> userRepository.delete(user));
     }
 }

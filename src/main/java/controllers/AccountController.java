@@ -12,8 +12,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static controllers.converters.ControllerConverter.fromService;
-import static controllers.converters.ControllerConverter.toService;
+import static converters.AccountConverter.fromService;
+import static converters.AccountConverter.toService;
 
 @RestController
 @RequestMapping("/v1/account")
@@ -61,7 +61,7 @@ public class AccountController {
             @PathVariable String username) {
 
         services.dtos.AccountDto serviceDto =
-                accountService.getAccount(username);
+                accountService.deleteAccount(username);
 
         return ResponseEntity
                 .ok(fromService(serviceDto));

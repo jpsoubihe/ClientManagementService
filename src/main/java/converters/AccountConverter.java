@@ -1,17 +1,52 @@
-package services.converters;
+package converters;
 
+import controllers.dtos.AccountDto;
 import entities.Account;
 import enums.Country;
 import enums.ServiceType;
 import exceptions.InvalidContractException;
 import exceptions.InvalidCountryException;
-import services.dtos.AccountDto;
+import lombok.Builder;
+import lombok.Data;
 
-public class ServiceConverter {
 
-    public static AccountDto fromAccount(Account account){
+@Data
+@Builder
+public class AccountConverter {
+
+    public static AccountDto fromService(
+            services
+                    .dtos.AccountDto dto
+    ) {
 
         return AccountDto.builder()
+                .beginDate(dto.getBeginDate())
+                .contract(dto.getContract())
+                .email(dto.getEmail())
+                .password(dto.getPassword())
+                .username(dto.getUsername())
+                .country(dto.getCountry())
+                .users(dto.getUsers())
+                .build();
+
+    }
+
+    public static services.dtos.AccountDto toService(AccountDto dto){
+
+        return services.dtos.AccountDto.builder()
+                .beginDate(dto.getBeginDate())
+                .contract(dto.getContract())
+                .email(dto.getEmail())
+                .password(dto.getPassword())
+                .country(dto.getCountry())
+                .username(dto.getUsername())
+                .users(dto.getUsers())
+                .build();
+    }
+
+    public static services.dtos.AccountDto fromAccount(Account account){
+
+        return services.dtos.AccountDto.builder()
                 .users(account.getUsers())
                 .username(account.getUsername())
                 .password(account.getPassword())
@@ -23,7 +58,7 @@ public class ServiceConverter {
 
     }
 
-    public static Account toAccount(AccountDto dto){
+    public static Account toAccount(services.dtos.AccountDto dto){
 
         return Account.builder()
                 .beginDate(dto.getBeginDate())

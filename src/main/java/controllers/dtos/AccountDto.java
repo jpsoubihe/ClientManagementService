@@ -1,5 +1,6 @@
 package controllers.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import entities.User;
 import enums.Country;
 import enums.ServiceType;
@@ -37,6 +38,8 @@ public class AccountDto {
     ServiceType contract;
 
     Country country;
-    
+
+    @Builder.Default
+//    @JsonIgnore
     List<User> users = new ArrayList<>();
 }

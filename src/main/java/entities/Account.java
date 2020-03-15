@@ -1,5 +1,6 @@
 package entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import enums.Country;
 import enums.ServiceType;
 import lombok.AllArgsConstructor;
