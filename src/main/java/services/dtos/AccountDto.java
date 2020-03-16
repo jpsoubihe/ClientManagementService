@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -19,6 +20,7 @@ import java.util.Set;
 @AllArgsConstructor
 public class AccountDto {
 
+    Long id;
 
     LocalDate beginDate;
 
@@ -31,11 +33,10 @@ public class AccountDto {
     @Builder.Default
     String password = "";
 
-    @NotNull
     Country country;
 
-    @NotNull
     ServiceType contract;
 
-    List<User> users;
+    @Builder.Default
+    List<User> users = new ArrayList<>();
 }

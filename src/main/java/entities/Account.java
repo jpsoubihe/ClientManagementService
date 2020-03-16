@@ -1,6 +1,5 @@
 package entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import enums.Country;
 import enums.ServiceType;
 import lombok.AllArgsConstructor;
@@ -9,7 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -41,9 +39,6 @@ public class Account {
 
     @Column(name = "contract")
     ServiceType contract;
-
-    @OneToMany(mappedBy = "account")
-    List<User> users;
 
 
 }

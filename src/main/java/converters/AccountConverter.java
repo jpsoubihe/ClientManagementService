@@ -20,6 +20,7 @@ public class AccountConverter {
     ) {
 
         return AccountDto.builder()
+                .id(dto.getId())
                 .beginDate(dto.getBeginDate())
                 .contract(dto.getContract())
                 .email(dto.getEmail())
@@ -47,7 +48,7 @@ public class AccountConverter {
     public static services.dtos.AccountDto fromAccount(Account account){
 
         return services.dtos.AccountDto.builder()
-                .users(account.getUsers())
+                .id(account.getId())
                 .username(account.getUsername())
                 .password(account.getPassword())
                 .email(account.getEmail())
@@ -67,7 +68,6 @@ public class AccountConverter {
                 .password(dto.getPassword())
                 .username(dto.getUsername())
                 .country(dto.getCountry())
-                .users(dto.getUsers())
                 .build();
 
     }

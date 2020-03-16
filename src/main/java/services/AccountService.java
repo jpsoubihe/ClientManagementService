@@ -30,15 +30,18 @@ public class AccountService {
 
         List<Account> accounts = accountRepository.findAll();
 
-        if (!accounts.isEmpty()) {
-            return accounts
-                    .stream()
-                    .map(a -> fromAccount(a))
-                    .collect(Collectors.toList());
+        if(accounts.isEmpty()) {
+            return emptyList();
         }
 
-
-        return emptyList();
+        return accounts.stream()
+                .map(account -> fromAccount(account))
+                .map(acc -> {
+                    List<User> accountUsers = userRepository.findByAccountId(acc.getId());
+                    acc.setUsers(accountUsers);
+                    return acc;
+                })
+                .collect(Collectors.toList());
     }
 
     public AccountDto getAccount(String username) {
@@ -48,7 +51,12 @@ public class AccountService {
                 .orElseThrow(() ->
                         new InvalidAccountException("there's no username"));
 
-        return fromAccount(account);
+        List<User> users = userRepository.findByAccountId(account.getId());
+
+        AccountDto dto = fromAccount(account);
+        dto.setUsers(users);
+
+        return dto;
     }
 
     public AccountDto postAccount(AccountDto dto) {
@@ -68,9 +76,9 @@ public class AccountService {
 
         AccountDto dto = fromAccount(account);
 
-        if(!account.getUsers().isEmpty()) {
-            deleteUsers(account.getUsers());
-        }
+//        if(!account.getUsers().isEmpty()) {
+//            deleteUsers(account.getUsers());
+//        }
 
         accountRepository.delete(account);
 

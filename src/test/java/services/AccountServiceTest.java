@@ -16,6 +16,7 @@ import org.mockito.Spy;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.mockito.junit.jupiter.MockitoExtension;
 import repositories.AccountRepository;
+import repositories.UserRepository;
 import services.dtos.AccountDto;
 
 import java.time.LocalDate;
@@ -26,8 +27,7 @@ import java.util.Optional;
 import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
@@ -44,6 +44,9 @@ public class AccountServiceTest {
     @Mock
     AccountRepository accountRepository;
 
+    @Mock
+    UserRepository userRepository;
+
     Account account1 = Account.builder()
             .id(Long.parseLong("1234"))
             .beginDate(LocalDate.now())
@@ -52,17 +55,16 @@ public class AccountServiceTest {
             .password("1234")
             .country(Country.BRASIL)
             .contract(ServiceType.BASIC)
-            .users(Arrays.asList())
             .build();
 
     AccountDto accountDto1 = AccountDto.builder()
+            .id(Long.parseLong("1234"))
             .beginDate(account1.getBeginDate())
             .contract(account1.getContract())
             .email(account1.getEmail())
             .password(account1.getPassword())
             .username(account1.getUsername())
             .country(account1.getCountry())
-            .users(account1.getUsers())
             .build();
 
 
@@ -74,17 +76,16 @@ public class AccountServiceTest {
             .password("4321")
             .country(Country.EUA)
             .contract(ServiceType.BASIC)
-            .users(Arrays.asList())
             .build();
 
     AccountDto accountDto2 = AccountDto.builder()
+            .id(Long.parseLong("4321"))
             .beginDate(account2.getBeginDate())
             .contract(account2.getContract())
             .email(account2.getEmail())
             .password(account2.getPassword())
             .username(account2.getUsername())
             .country(account2.getCountry())
-            .users(account2.getUsers())
             .build();
 
     List<Account> accounts = Arrays.asList(account1, account2);
@@ -95,6 +96,10 @@ public class AccountServiceTest {
 
         when(accountRepository.findAll())
                 .thenReturn(accounts);
+
+        when(userRepository
+                .findByAccountId(anyLong()))
+                .thenReturn(emptyList());
 
         assertThat(accountService.getAllAccounts())
                 .isNotNull()
@@ -121,6 +126,10 @@ public class AccountServiceTest {
         when(accountRepository
                 .findByUsername(account1.getUsername()))
                 .thenReturn(java.util.Optional.ofNullable(account1));
+
+        when(userRepository
+                .findByAccountId(account1.getId()))
+                .thenReturn(emptyList());
 
         assertThat(accountService
                 .getAccount(account1.getUsername())
@@ -179,24 +188,6 @@ public class AccountServiceTest {
 
         assertThrows(InvalidAccountException.class, () -> accountService.postAccount(accountDto1));
     }
-
-//    @Test
-//    @DisplayName("Should throw InvalidAccountException when posting with empty contract")
-//    public void postAccountWithEmptyContractTest() {
-//
-//        accountDto1.setContract("");
-//
-//        assertThrows(InvalidContractException.class, () -> accountService.postAccount(accountDto1));
-//    }
-//
-//    @Test
-//    @DisplayName("Should throw InvalidAccountException when posting with empty country")
-//    public void postAccountWithEmptyCountryTest() {
-//
-//        accountDto1.setCountry("");
-//
-//        assertThrows(InvalidCountryException.class, () -> accountService.postAccount(accountDto1));
-//    }
 
     @Test
     @DisplayName("Should delete account with success if exists")

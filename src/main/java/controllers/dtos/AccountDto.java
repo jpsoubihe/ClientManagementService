@@ -1,6 +1,5 @@
 package controllers.dtos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import entities.User;
 import enums.Country;
 import enums.ServiceType;
@@ -9,12 +8,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-import static java.util.Collections.emptyList;
 
 
 @Data
@@ -22,6 +18,8 @@ import static java.util.Collections.emptyList;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AccountDto {
+
+    Long id;
 
     @Builder.Default
     LocalDate beginDate = LocalDate.now();
@@ -40,6 +38,5 @@ public class AccountDto {
     Country country;
 
     @Builder.Default
-//    @JsonIgnore
     List<User> users = new ArrayList<>();
 }
