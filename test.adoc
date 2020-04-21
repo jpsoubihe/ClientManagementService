@@ -1,2 +1,55 @@
 [.lead]
 Lead Paragraph
+let's see the *impact* of the markdown.
+Rubies are red, +
+Topazes are blue.
+
+pass:q[<u>*IMPORTANT*</u>]
+
+.Primos
+* Joao
+** Bruno
+*** Lucas
+** Gabi
+* Vick
+
+//-
+
+.Estilos musicais
+- Sertanejo
+- universitario
+- Rock
+- Samba
+
+//-
+
+1. Jundiai
+2. Campinas
+3. São Paulo
+
+//-
+
+. Protons
+. Electrons
+. Neutrons
+
+//-
+
+
+[start=1]
+. Note
+. Tablet
+. Desktop
+
+
+|===
+|Scope |FeatureName |Group |Activation Type 
+| | | | 
+| | | | 
+| | | | 
+| | | | 
+| | | | 
+| | | | 
+| | | | 
+| | | | 
+|===
